@@ -12,7 +12,7 @@ Projekt poskytuje sadu BAT skriptů pro správu přepínání české a anglick�
 gta-v-cz-en-switch/
 │
 ├── config/                         Konfigurace nástroje
-│   └── config.bat                  Hlavní konfigurační soubor                  Bude doplněno
+│   └── config.bat                  Hlavní konfigurační soubor                  Připraveno
 │
 ├── core/                           Sdílené komponenty pro skripty
 │   ├── colors.bat                  Centrální ANSI barevná paleta               Připraveno
@@ -39,9 +39,13 @@ gta-v-cz-en-switch/
 │   └── update.bat                  Aktualizace nebo příprava souborů           Bude doplněno
 │
 ├── tests/                          Testovací skripty a podpůrné soubory
-│   └── logger/                     Testy centrálního loggeru
-│       ├── test-logger-failure.bat Záměrně předčasně ukončený běh              Připraveno
-│       └── test-logger-success.bat Standardní úspěšný běh                      Připraveno
+│   ├── logger/                     Testy centrálního loggeru
+│   │   ├── test-logger-failure.bat Záměrně předčasně ukončený běh              Připraveno
+│   │   └── test-logger-success.bat Standardní úspěšný běh                      Připraveno
+│   └── config/                     Testy centrální konfigurace
+│       ├── test-config-defaults.bat Výchozí hodnoty konfigurace                Připraveno
+│       ├── test-config-overrides.bat Zachování přepsaných hodnot               Připraveno
+│       └── test-config-partial-override.bat Částečné přepsání konfigurace      Připraveno
 │
 ├── .gitattributes                  Pravidla pro konce řádků a textové soubory  Připraveno
 ├── .gitignore                      Pravidla pro ignorované soubory             Připraveno
@@ -73,6 +77,27 @@ gta-v-cz-en-switch/
 - [`LICENSE`](../LICENSE) – MIT licence projektu.
 - [`LICENSE-CZ.md`](./LICENSE-CZ.md) – český informativní překlad licence MIT.
 - [`README.md`](../README.md) – stručný úvod do projektu a odkazy na dokumentaci.
+
+## Konfigurace
+
+Centrální konfigurace nástroje je umístěna v [`config/config.bat`](../config/config.bat).
+
+Konfigurační soubor je načítán jednotlivými komponentami pomocí `CALL` a obsahuje výchozí hodnoty sdílené napříč aplikací.
+
+Aktuálně jsou definovány:
+
+- `LOG_KEEP` – počet posledních provozních logů, které mají být zachovány. Výchozí hodnota je `30`.
+- `LOG_LEVEL` – výchozí úroveň loggeru pro budoucí filtrování zpráv. Aktuálně je nastavena na `INFO`, logger ji však zatím nepoužívá jako filtr; `DEBUG` a `DETAIL` záznamy se proto nadále zapisují do logu.
+
+Hodnoty jsou nastavovány pouze v případě, že již nejsou definovány volajícím skriptem.
+
+### Testy konfigurace
+
+Testy v [`tests/config/`](../tests/config/) ověřují základní chování centrální konfigurace.
+
+- [`test-config-defaults.bat`](../tests/config/test-config-defaults.bat) – ověřuje výchozí hodnoty `LOG_KEEP=30` a `LOG_LEVEL=INFO`.
+- [`test-config-overrides.bat`](../tests/config/test-config-overrides.bat) – ověřuje zachování hodnot předem nastavených volajícím skriptem.
+- [`test-config-partial-override.bat`](../tests/config/test-config-partial-override.bat) – ověřuje zachování přednastavené hodnoty a současné doplnění chybějící výchozí hodnoty.
 
 ## Logger
 

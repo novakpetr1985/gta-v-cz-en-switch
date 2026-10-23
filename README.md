@@ -11,6 +11,7 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
 ## Struktura projektu
 
 - [`config/`](config/) – konfigurace
+    - [`config.bat`](config/config.bat) – hlavní konfigurační soubor
 - [`core/`](core/) – společné komponenty pro BAT skripty
 - [`diagnostics/`](diagnostics/) – diagnostické nástroje a výstupy
 - [`docs/`](docs/) – základní a technická dokumentace projektu
@@ -20,6 +21,10 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
     - [`logger/`](tests/logger/) – testy centrálního loggeru
         - [`test-logger-success.bat`](tests/logger/test-logger-success.bat) – test standardního úspěšného běhu s automatickou kontrolou logu
         - [`test-logger-failure.bat`](tests/logger/test-logger-failure.bat) – test předčasně ukončeného běhu s automatickou kontrolou logu
+    - [`config/`](tests/config/) – testy centrální konfigurace
+        - [`test-config-defaults.bat`](tests/config/test-config-defaults.bat) – ověření výchozích hodnot konfigurace
+        - [`test-config-overrides.bat`](tests/config/test-config-overrides.bat) – ověření zachování přepsaných hodnot
+        - [`test-config-partial-override.bat`](tests/config/test-config-partial-override.bat) – ověření částečného přepsání konfigurace
 
 ## Dokumentace
 
