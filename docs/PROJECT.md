@@ -15,7 +15,8 @@ gta-v-cz-en-switch/
 │   └── config.bat                  Hlavní konfigurační soubor                  Bude doplněno
 │
 ├── core/                           Sdílené komponenty pro skripty
-│   └── colors.bat                  Centrální ANSI barevná paleta               Připraveno
+│   ├── colors.bat                  Centrální ANSI barevná paleta               Připraveno
+│   └── logger.bat                  Centrální logger                            Připraveno
 │
 ├── diagnostics/                    Diagnostické nástroje a výstupy
 │   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
@@ -38,7 +39,9 @@ gta-v-cz-en-switch/
 │   └── update.bat                  Aktualizace nebo příprava souborů           Bude doplněno
 │
 ├── tests/                          Testovací skripty a podpůrné soubory
-│   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
+│   └── logger/                     Testy centrálního loggeru
+│       ├── test-logger-failure.bat Záměrně předčasně ukončený běh              Připraveno
+│       └── test-logger-success.bat Standardní úspěšný běh                      Připraveno
 │
 ├── .gitattributes                  Pravidla pro konce řádků a textové soubory  Připraveno
 ├── .gitignore                      Pravidla pro ignorované soubory             Připraveno
@@ -52,12 +55,15 @@ gta-v-cz-en-switch/
 
 - [`gta-v-cz-en-switch.bat`](../gta-v-cz-en-switch.bat) – hlavní vstupní bod nástroje.
 - [`config/`](../config/) – konfigurace nástroje. Obsahuje hodnoty používané jednotlivými skripty.
-- [`core/`](../core/) – sdílené komponenty, například [`colors.bat`](../core/colors.bat). Soubory v této složce poskytují společnou logiku ostatním skriptům.
+- [`core/`](../core/) – sdílené komponenty, například [`colors.bat`](../core/colors.bat) a [`logger.bat`](../core/logger.bat). Soubory v této složce poskytují společnou logiku ostatním skriptům.
 - [`diagnostics/`](../diagnostics/) – lokálně generované diagnostické výstupy pro řešení problémů. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
 - [`docs/`](../docs/) – projektová dokumentace, architektura a pravidla projektu.
 - [`logs/`](../logs/) – lokálně generované provozní záznamy. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
 - [`scripts/`](../scripts/) – vlastní funkční skripty nástroje, například přepínání jazyka, aktualizace nebo ověření dostupnosti služby.
 - [`tests/`](../tests/) – testovací skripty, testovací data a podpůrné soubory.
+  - [`tests/logger/`](../tests/logger/) – testy centrálního loggeru.
+  - [`test-logger-success.bat`](../tests/logger/test-logger-success.bat) – ověřuje standardní úspěšný průběh loggeru a automaticky kontroluje obsah logu.
+  - [`test-logger-failure.bat`](../tests/logger/test-logger-failure.bat) – ověřuje průběžné logování při záměrném předčasném ukončení běhu a automaticky kontroluje obsah logu.
 
 ## Klíčové soubory v kořenu
 
@@ -67,6 +73,42 @@ gta-v-cz-en-switch/
 - [`LICENSE`](../LICENSE) – MIT licence projektu.
 - [`LICENSE-CZ.md`](./LICENSE-CZ.md) – český informativní překlad licence MIT.
 - [`README.md`](../README.md) – stručný úvod do projektu a odkazy na dokumentaci.
+
+## Logger
+
+Centrální logger je umístěn v [`core/logger.bat`](../core/logger.bat).
+
+Logger poskytuje společné logování pro jednotlivé skripty nástroje a zapisuje události průběžně během běhu.
+
+Každé spuštění vytváří vlastní provozní log s jedinečným identifikátorem běhu (`RUN_ID`). Ten obsahuje datum, čas s milisekundami a ID pomocného procesu PowerShellu, aby se rychle po sobě nebo souběžně spuštěné běhy nesdílely jeden soubor. Dokončený běh je následně dostupný také prostřednictvím `gta-v-cz-en-switch-latest.log` (kopie posledního dokončeného logu).
+
+Logger podporuje úrovně:
+
+- `DEBUG`
+- `INFO`
+- `WARN`
+- `ERROR`
+
+Součástí logování je také evidence kroků, měření jejich doby, měření celkové doby běhu a informace o výsledku dokončení.
+
+`FINISH` automaticky uzavře případný rozpracovaný krok, takže jeho doba i počet dotazů zůstanou zaznamenány.
+
+Retence ponechává posledních 30 běhů (`LOG_KEEP`), řazených podle názvu s `RUN_ID`. Soubor `gta-v-cz-en-switch-latest.log` se do tohoto počtu nezapočítává, protože jeho název neodpovídá vzoru `gta-v-cz-en-switch_*.log`.
+
+Zprávy předávané loggeru mohou obsahovat znaky `& | < > !`. Dvojité uvozovky (`"`) se ve zprávách nepoužívají; místo nich se používá apostrof.
+
+Po prvním volání logger zpřístupní volajícímu skriptu proměnné `RUN_ID`, `RUN_LOG`, `LOG_FILE`, `LATEST_LOG`, `LOG_DIR`, `CORE_DIR` a `PROJECT_DIR`; není nutné je znovu sestavovat. Stav loggeru zůstává ve stejném prostředí, proto má skript, který jej používá, podle potřeby začínat příkazem `SETLOCAL`.
+
+Při předčasném ukončení běhu bez volání `FINISH` zůstává zachován samostatný log s posledním průběžně zaznamenaným stavem. Takový běh neaktualizuje `gta-v-cz-en-switch-latest.log` a neobsahuje `SCRIPT_END`.
+
+### Testy loggeru
+
+Testy v [`tests/logger/`](../tests/logger/) volají logger a po dokončení automaticky kontrolují obsah aktuálního logu (`RUN_LOG`) i kopii `gta-v-cz-en-switch-latest.log`. Výsledek kontrol je vypsán jako `[ OK ]` nebo `[FAIL]`.
+
+- Návratový kód testu: `0` = všechny kontroly prošly, `1` = některá kontrola selhala nebo nebyl nalezen logger.
+- `test-logger-failure.bat` záměrně nevolá `FINISH`; kód `0` zde znamená, že se logger při předčasném ukončení chová správně.
+- Pro spuštění bez čekání na klávesu: `set NOPAUSE=1`.
+- Automaticky se neověřuje, že `DEBUG` a zprávy s parametrem `F` nejsou vidět v konzoli; to je nutné zkontrolovat při spuštění.
 
 ## Zásady
 

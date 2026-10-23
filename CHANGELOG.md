@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## [v0.1.0] - Central Logger - 2026-10-23
+
+### Přidáno
+
+- Centrální logger pro průběžné logování běhu nástroje.
+- Samostatný provozní log pro každé spuštění.
+- Centrální `gta-v-cz-en-switch-latest.log` pro poslední dokončený běh.
+- Logovací úrovně `DEBUG`, `INFO`, `WARN` a `ERROR`.
+- Evidence jednotlivých kroků a měření jejich doby.
+- Měření celkové doby běhu.
+- Retence provozních logů (posledních 30 běhů, řazení podle `RUN_ID`; `latest` se do počtu nezapočítává).
+- Identifikátor běhu s milisekundami a ID procesu, aby rychlé nebo souběžné běhy nesdílely stejný log.
+- Automatické uzavření rozpracovaného kroku při `FINISH`.
+- Bezpečný zápis do logu a konzole pro zprávy se znaky `& | < > !`.
+- Test loggeru pro standardní úspěšný běh s automatickou kontrolou obsahu logu a návratovým kódem.
+- Test loggeru pro záměrně předčasně ukončený běh s automatickou kontrolou logu a návratovým kódem.
+- Možnost spustit testy bez pauzy pomocí proměnné `NOPAUSE`.
+
 ## [v0.0.0] - Initial Project Foundation - 2026-10-23
 
 ### Přidáno

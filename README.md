@@ -17,6 +17,9 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
 - [`logs/`](logs/) – provozní záznamy
 - [`scripts/`](scripts/) – jednotlivé funkce nástroje
 - [`tests/`](tests/) – testovací skripty a soubory
+    - [`logger/`](tests/logger/) – testy centrálního loggeru
+        - [`test-logger-success.bat`](tests/logger/test-logger-success.bat) – test standardního úspěšného běhu s automatickou kontrolou logu
+        - [`test-logger-failure.bat`](tests/logger/test-logger-failure.bat) – test předčasně ukončeného běhu s automatickou kontrolou logu
 
 ## Dokumentace
 
