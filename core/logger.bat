@@ -160,25 +160,17 @@ if exist "%CORE_DIR%colors.bat" (
 
 
 REM ------------------------------------------------------------
-REM VÝCHOZÍ KONFIGURACE
+REM KONFIGURACE
 REM ------------------------------------------------------------
 REM
-REM LOG_KEEP:
-REM   Počet jednotlivých běhů, které mají být zachovány.
-REM   Výchozí hodnota je 30.
-REM
-REM LOG_LEVEL:
-REM   Výchozí úroveň loggeru.
-REM   Aktuálně je nastavena na INFO.
-REM
-REM Poznámka:
-REM   LOG_LEVEL je připraven jako konfigurační hodnota pro další
-REM   rozvoj loggeru. Aktuální logger ji nepoužívá jako filtr
-REM   konzolových nebo logovacích zpráv.
+REM Centrální konfigurace aplikace je načtena z config\config.bat.
+REM Config nastavuje výchozí hodnoty pouze pokud nejsou již
+REM definovány volajícím.
 REM ------------------------------------------------------------
 
-if not defined LOG_KEEP set "LOG_KEEP=30"
-if not defined LOG_LEVEL set "LOG_LEVEL=INFO"
+if exist "%PROJECT_DIR%config\config.bat" (
+    call "%PROJECT_DIR%config\config.bat"
+)
 
 
 REM ------------------------------------------------------------

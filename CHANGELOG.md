@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## [v0.2.0] - Central Configuration - 2026-10-23
+
+### Přidáno
+
+- Centrální konfigurační soubor [`config/config.bat`](config/config.bat).
+- Konfigurační hodnoty `LOG_KEEP` a `LOG_LEVEL`.
+- Načítání centrální konfigurace loggerem.
+- Testy centrální konfigurace.
+
+### Opraveno
+
+- Test výchozích hodnot konfigurace se nyní izoluje od proměnných zděděných z prostředí.
+- Dokumentace upřesňuje, že `LOG_LEVEL` je připraveno pro budoucí filtrování a aktuálně neovlivňuje zápis loggeru.
+
+
 ## [v0.1.0] - Central Logger - 2026-10-23
 
 ### Přidáno
