@@ -32,6 +32,7 @@ Podrobnější dokumentace projektu:
 
 - [`COLORS.md`](docs/COLORS.md) – ANSI barevná paleta
 - [`GIT.md`](docs/GIT.md) – Pravidla repozitáře a Git workflow
+- [`LAUNCHER.md`](docs/LAUNCHER.md) – Dokumentace modulu Rockstar Launcher
 - [`PROJECT.md`](docs/PROJECT.md) – Architektura projektu
 
 ## Licence

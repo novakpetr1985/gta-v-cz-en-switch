@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## [v0.3.0] - Rockstar Launcher - 2026-10-25
+
+### Přidáno
+
+- Funkční modul [`scripts/launcher.bat`](scripts/launcher.bat) pro přípravu a spuštění Rockstar Games Launcheru.
+- Kontrola dostupnosti `LauncherPatcher.exe`.
+- Detekce již běžícího `Launcher.exe` bez jeho opětovného spouštění.
+- Čekání na spuštění `Launcher.exe` po spuštění patcheru.
+- Vyhledání viditelného okna Rockstar Launcheru.
+- Obnovení a pokus o aktivaci okna Rockstar Launcheru do popředí.
+- Konfigurační hodnoty pro Launcher v [`config/config.bat`](config/config.bat).
+- Napojení Launcheru na centrální logger.
+- Napojení Launcheru na hlavní orchestrátor [`gta-v-cz-en-switch.bat`](gta-v-cz-en-switch.bat).
+- Samostatná dokumentace Launcheru – [`docs/LAUNCHER.md`](docs/LAUNCHER.md).
+
+### Opraveno
+
+- Hlavní vstupní bod nástroje nyní řídí první funkční krok přes samostatný Launcher modul.
+- Odpovědnost za ukončení celého běhu zůstává v hlavním orchestrátoru.
+- Launcher samostatně nevolá `FINISH` a nepřebírá odpovědnost za ukončení celého běhu.
+
+### Ověřeno
+
+- Úspěšný běh při spuštění Rockstar Launcheru přes `LauncherPatcher.exe`.
+- Úspěšná detekce `Launcher.exe`.
+- Úspěšné nalezení a aktivace okna Rockstar Launcheru.
+- Úspěšný návratový kód `0`.
+- Celková doba ověřeného běhu: `10,92 s`.
+
 ## [v0.2.0] - Central Configuration - 2026-10-23
 
 ### Přidáno

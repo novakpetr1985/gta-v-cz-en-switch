@@ -168,8 +168,8 @@ REM Config nastavuje výchozí hodnoty pouze pokud nejsou již
 REM definovány volajícím.
 REM ------------------------------------------------------------
 
-if exist "%PROJECT_DIR%config\config.bat" (
-    call "%PROJECT_DIR%config\config.bat"
+if exist "%PROJECT_DIR%\config\config.bat" (
+    call "%PROJECT_DIR%\config\config.bat"
 )
 
 

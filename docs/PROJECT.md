@@ -31,7 +31,7 @@ gta-v-cz-en-switch/
 │   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
 │
 ├── scripts/                        Funkční skripty nástroje
-│   ├── launcher.bat                Práce s Rockstar Games Launcherem           Bude doplněno
+│   ├── launcher.bat                Práce s Rockstar Games Launcherem           Připraveno
 │   ├── offline.bat                 Přepnutí launcheru do offline režimu        Bude doplněno
 │   ├── switch-cz.bat               Přepnutí na českou lokalizaci               Bude doplněno
 │   ├── switch-en.bat               Přepnutí na anglickou lokalizaci            Bude doplněno
