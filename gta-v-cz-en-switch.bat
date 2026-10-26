@@ -10,16 +10,9 @@ REM Spousti jednotlive kroky ze slozky scripts\ ve spravnem
 REM poradi, vyhodnocuje jejich navratove kody a beh ukoncuje
 REM pres centralni logger.
 REM
-REM AKTUALNI TESTOVANY KROK:
-REM   1. scripts\offline.bat - prepnuti Rockstar Launcheru
-REM      do offline rezimu
-REM
-REM TENTO ORCHESTRATOR JE DOCASNE URCEN PRO TEST OFFLINE MODULU.
-REM
-REM Pozdeji bude workflow rozsireno napriklad na:
+REM Aktualni workflow:
 REM   1. scripts\launcher.bat
 REM   2. scripts\offline.bat
-REM   3. dalsi moduly
 REM
 REM Navratovy kod:
 REM   0 = vsechny provedene kroky byly uspesne
@@ -55,10 +48,13 @@ REM ============================================================
 REM KROKY
 REM ============================================================
 REM
-REM 1. OFFLINE
+REM 1. LAUNCHER
 REM
-REM Samostatny modul offline.bat provede kompletní logiku
-REM prepnuti Rockstar Launcheru do offline rezimu.
+call "%~dp0scripts\launcher.bat"
+if errorlevel 1 goto END_ERROR
+
+REM 2. OFFLINE
+REM Samostatny modul offline.bat provede prepnuti do offline rezimu.
 REM
 REM Orchestrator zde pouze:
 REM   - spusti modul

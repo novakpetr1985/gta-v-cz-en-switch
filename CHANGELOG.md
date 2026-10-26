@@ -30,6 +30,18 @@
 - Časové limity Offline modulu jsou řízeny centrální konfigurací.
 - Opravena kompatibilita[`scripts/offline.bat`](scripts/offline.bat) odstraněním UTF-8 BOM, který způsoboval chybnou interpretaci prvního příkazu při spuštění v CMD.
 
+## [v0.3.0] - Rockstar Launcher - 2026-10-25
+
+### Přidáno
+
+- Funkční modul [`scripts/launcher.bat`](scripts/launcher.bat) pro spuštění a aktivaci Rockstar Games Launcheru.
+- Konfigurace `ROCKSTAR_PATCHER`, `TIMEOUT_LAUNCHER` a `TIMEOUT_WINDOW`.
+- Dokumentace modulu [`docs/LAUNCHER.md`](docs/LAUNCHER.md).
+
+### Opraveno
+
+- Testovací režim launcheru nyní po úspěchu zobrazí správný HWND.
+
 ## [v0.2.0] - Central Configuration - 2026-10-23
 
 ### Přidáno

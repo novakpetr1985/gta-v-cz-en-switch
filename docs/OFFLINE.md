@@ -305,9 +305,9 @@ Integrační test s `launcher.bat` bude proveden až v samostatné integrační 
 
 ---
 
-## Budoucí integrace
+## Integrační workflow
 
-Offline modul je připraven k pozdějšímu propojení s Launcher modulem.
+Offline modul je integrován s Launcher modulem v testovací větvi `test/scripts-launcher-offline`.
 
 Aktuální vývojový model je:
 
@@ -331,7 +331,7 @@ gta-v-cz-en-switch.bat
         └── offline.bat
 ```
 
-Toto propojení však **není součástí současné samostatné implementace Offline modulu**.
+Samostatné spuštění modulu zůstává podporované pro diagnostiku.
 
 ---
 

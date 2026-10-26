@@ -31,7 +31,7 @@ gta-v-cz-en-switch/
 │   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
 │
 ├── scripts/                        Funkční skripty nástroje
-│   ├── launcher.bat                Práce s Rockstar Games Launcherem           Bude doplněno
+│   ├── launcher.bat                Práce s Rockstar Games Launcherem           Připraveno
 │   ├── offline.bat                 Přepnutí launcheru do offline režimu        Připraveno
 │   ├── switch-cz.bat               Přepnutí na českou lokalizaci               Bude doplněno
 │   ├── switch-en.bat               Přepnutí na anglickou lokalizaci            Bude doplněno
@@ -50,7 +50,7 @@ gta-v-cz-en-switch/
 ├── .gitattributes                  Pravidla pro konce řádků a textové soubory  Připraveno
 ├── .gitignore                      Pravidla pro ignorované soubory             Připraveno
 ├── CHANGELOG.md                    Přehled významných změn mezi verzemi        Připraveno
-├── gta-v-cz-en-switch.bat          Hlavní vstupní bod nástroje                 Bude doplněno
+├── gta-v-cz-en-switch.bat          Hlavní vstupní bod nástroje                 Připraveno
 ├── LICENSE                         Licence projektu                            Připraveno
 └── README.md                       Stručný úvod a odkazy na dokumentaci        Připraveno
 ```
@@ -88,6 +88,8 @@ Aktuálně jsou definovány:
 
 - `LOG_KEEP` – počet posledních provozních logů, které mají být zachovány. Výchozí hodnota je `30`.
 - `LOG_LEVEL` – výchozí úroveň loggeru pro budoucí filtrování zpráv. Aktuálně je nastavena na `INFO`, logger ji však zatím nepoužívá jako filtr; `DEBUG` a `DETAIL` záznamy se proto nadále zapisují do logu.
+- `ROCKSTAR_PATCHER` a `ROCKSTAR_LOG_DIR` – cesty používané Launcherem a Offline modulem.
+- `TIMEOUT_LAUNCHER`, `TIMEOUT_WINDOW`, `TIMEOUT_OFFLINE_EFFECT` a `TIMEOUT_OFFLINE_MANUAL` – časové limity modulů v sekundách.
 
 Hodnoty jsou nastavovány pouze v případě, že již nejsou definovány volajícím skriptem.
 

@@ -27,6 +27,9 @@ REM ============================================================
 REM ROCKSTAR LAUNCHER
 REM ============================================================
 
+REM Cesta k LauncherPatcher.exe.
+if not defined ROCKSTAR_PATCHER set "ROCKSTAR_PATCHER=C:\Program Files\Rockstar Games\Launcher\LauncherPatcher.exe"
+
 REM Slozka s launcher.log Rockstar Games Launcheru.
 if not defined ROCKSTAR_LOG_DIR set "ROCKSTAR_LOG_DIR=%USERPROFILE%\Documents\Rockstar Games\Launcher"
 
@@ -34,6 +37,9 @@ if not defined ROCKSTAR_LOG_DIR set "ROCKSTAR_LOG_DIR=%USERPROFILE%\Documents\Ro
 REM ============================================================
 REM TIMEOUTY
 REM ============================================================
+
+REM Maximalni doba cekani na proces Launcher.exe.
+if not defined TIMEOUT_LAUNCHER set "TIMEOUT_LAUNCHER=120"
 
 REM Maximalni doba cekani na viditelne a aktivovatelne okno Launcheru.
 if not defined TIMEOUT_WINDOW set "TIMEOUT_WINDOW=15"

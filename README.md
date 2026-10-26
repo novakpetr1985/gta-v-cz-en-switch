@@ -33,22 +33,22 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
         - [`test-config-overrides.bat`](tests/config/test-config-overrides.bat) – ověření zachování přepsaných hodnot
         - [`test-config-partial-override.bat`](tests/config/test-config-partial-override.bat) – ověření částečného přepsání konfigurace
 
-## Nezávislé moduly
+## Moduly a workflow
 
-V současné fázi jsou Launcher a Offline vyvíjeny jako dva samostatné moduly.
+Launcher a Offline zůstávají samostatně testovatelné moduly; integrační workflow je nyní:
 
 ```text
-dev
-├── feature/launcher
+test/scripts-launcher-offline
+├── feature/scripts-launcher
 │       └── launcher.bat
 │
-└── feature/offline
+└── feature/scripts-offline
         └── offline.bat
 ```
 
 Offline modul při samostatném testu předpokládá, že Rockstar Games Launcher je již spuštěný. Nevolá `launcher.bat` a není na něm při běhu závislý.
 
-Po dokončení a samostatném otestování obou modulů bude provedena jejich integrace do hlavního orchestrátoru.
+Hlavní orchestrátor je volá v pořadí Launcher → Offline.
 
 ## Hlavní vstupní bod
 
@@ -77,6 +77,7 @@ Podrobnější dokumentace projektu:
 
 - [`COLORS.md`](docs/COLORS.md) – ANSI barevná paleta
 - [`GIT.md`](docs/GIT.md) – Pravidla repozitáře a Git workflow
+- [`LAUNCHER.md`](docs/LAUNCHER.md) – Dokumentace modulu Rockstar Launcher
 - [`PROJECT.md`](docs/PROJECT.md) – Architektura projektu
 - [`OFFLINE.md`](docs/OFFLINE.md) – Offline modul
 
