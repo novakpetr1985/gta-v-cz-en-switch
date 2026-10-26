@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 setlocal EnableExtensions
 
 REM Samostatny test modulu: offline.bat --test nebo offline.bat -t.

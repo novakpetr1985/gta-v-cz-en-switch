@@ -28,6 +28,7 @@
 - Automatické ovládání používá víceúrovňový fallback místo jediného způsobu aktivace `GO OFFLINE`.
 - Potvrzení offline režimu není založeno pouze na kliknutí, ale na skutečném stavu zaznamenaném v `launcher.log`.
 - Časové limity Offline modulu jsou řízeny centrální konfigurací.
+- Opravena kompatibilita[`scripts/offline.bat`](scripts/offline.bat) odstraněním UTF-8 BOM, který způsoboval chybnou interpretaci prvního příkazu při spuštění v CMD.
 
 ## [v0.2.0] - Central Configuration - 2026-10-23
 
