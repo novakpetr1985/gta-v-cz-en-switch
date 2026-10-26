@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## [v0.4.0] - Offline Module - 2026-10-26
+
+### Přidáno
+
+- Samostatný funkční Offline modul [`scripts/offline.bat`](scripts/offline.bat).
+- Kontrola aktuálního stavu Rockstar Games Launcheru pomocí `launcher.log`.
+- Detekce již aktivního offline režimu.
+- Automatické otevření Settings a hledání akce `GO OFFLINE`.
+- Ovládání `GO OFFLINE` pomocí Windows UI Automation `Invoke`.
+- Fallback na fyzický klik myší při selhání UI Automation.
+- Manuální fallback při selhání automatických metod.
+- Ověření skutečného offline režimu pomocí parametru `-scOfflineOnly` a následného stavu `Signed In`.
+- Interní stavové vyhodnocení `OFFLINE_STATE`.
+- Návratové kódy modulu pro nadřazený orchestrátor.
+- Napojení na centrální konfiguraci [`config/config.bat`](config/config.bat).
+- Napojení na centrální logger [`core/logger.bat`](core/logger.bat).
+- Diagnostický UI Automation dump při selhání hledání prvku.
+- Samostatné testování Offline modulu bez závislosti na `launcher.bat`.
+- Dokumentace Offline modulu [`docs/OFFLINE.md`](docs/OFFLINE.md).
+- Orchestrace Offline modulu přes hlavní vstupní bod [`gta-v-cz-en-switch.bat`](gta-v-cz-en-switch.bat) pro aktuální testovací workflow.
+- Vyhodnocení návratového kódu Offline modulu hlavním orchestrátorem.
+
+### Opraveno
+
+- CMD/PowerShell zpracování automatického fyzického kliku bylo upraveno tak, aby bylo spolehlivé při volání z BAT skriptu.
+- Automatické ovládání používá víceúrovňový fallback místo jediného způsobu aktivace `GO OFFLINE`.
+- Potvrzení offline režimu není založeno pouze na kliknutí, ale na skutečném stavu zaznamenaném v `launcher.log`.
+- Časové limity Offline modulu jsou řízeny centrální konfigurací.
+
 ## [v0.2.0] - Central Configuration - 2026-10-23
 
 ### Přidáno

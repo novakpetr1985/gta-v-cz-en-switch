@@ -32,7 +32,7 @@ gta-v-cz-en-switch/
 │
 ├── scripts/                        Funkční skripty nástroje
 │   ├── launcher.bat                Práce s Rockstar Games Launcherem           Bude doplněno
-│   ├── offline.bat                 Přepnutí launcheru do offline režimu        Bude doplněno
+│   ├── offline.bat                 Přepnutí launcheru do offline režimu        Připraveno
 │   ├── switch-cz.bat               Přepnutí na českou lokalizaci               Bude doplněno
 │   ├── switch-en.bat               Přepnutí na anglickou lokalizaci            Bude doplněno
 │   ├── uia.bat                     Ověření dostupnosti služby                  Bude doplněno

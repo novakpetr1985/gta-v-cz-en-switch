@@ -8,6 +8,13 @@ Nástroj pro Windows určený k přepínání české a anglické lokalizace hry
 
 Základní struktura a pravidla repozitáře jsou připravené; implementace společných komponent a jednotlivých funkcí se doplňuje postupně.
 
+| Modul | Stav | Verze |
+| :---: | :---: | :---: |
+| Logger | OK | v0.1.0 |
+| Config | OK | v0.2.0 |
+| Launcher | OK | v0.3.0 |
+| Offline | OK | v0.4.0 |
+
 ## Struktura projektu
 
 - [`config/`](config/) – konfigurace
@@ -26,6 +33,44 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
         - [`test-config-overrides.bat`](tests/config/test-config-overrides.bat) – ověření zachování přepsaných hodnot
         - [`test-config-partial-override.bat`](tests/config/test-config-partial-override.bat) – ověření částečného přepsání konfigurace
 
+## Nezávislé moduly
+
+V současné fázi jsou Launcher a Offline vyvíjeny jako dva samostatné moduly.
+
+```text
+dev
+├── feature/launcher
+│       └── launcher.bat
+│
+└── feature/offline
+        └── offline.bat
+```
+
+Offline modul při samostatném testu předpokládá, že Rockstar Games Launcher je již spuštěný. Nevolá `launcher.bat` a není na něm při běhu závislý.
+
+Po dokončení a samostatném otestování obou modulů bude provedena jejich integrace do hlavního orchestrátoru.
+
+## Hlavní vstupní bod
+
+Hlavním vstupním bodem aplikace je [`gta-v-cz-en-switch.bat`](gta-v-cz-en-switch.bat).
+
+Finální workflow bude postupně procházet jednotlivými moduly:
+
+```text
+gta-v-cz-en-switch.bat
+        │
+        ▼
+launcher.bat
+        │
+        ▼
+offline.bat
+        │
+        ▼
+další funkce
+```
+
+Jednotlivé moduly jsou navrženy tak, aby mohly být během vývoje testovány také samostatně. Propojení bude součástí následné integrační fáze.
+
 ## Dokumentace
 
 Podrobnější dokumentace projektu:
@@ -33,6 +78,7 @@ Podrobnější dokumentace projektu:
 - [`COLORS.md`](docs/COLORS.md) – ANSI barevná paleta
 - [`GIT.md`](docs/GIT.md) – Pravidla repozitáře a Git workflow
 - [`PROJECT.md`](docs/PROJECT.md) – Architektura projektu
+- [`OFFLINE.md`](docs/OFFLINE.md) – Offline modul
 
 ## Licence
 
