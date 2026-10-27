@@ -168,8 +168,8 @@ REM Config nastavuje výchozí hodnoty pouze pokud nejsou již
 REM definovány volajícím.
 REM ------------------------------------------------------------
 
-if exist "%PROJECT_DIR%config\config.bat" (
-    call "%PROJECT_DIR%config\config.bat"
+if exist "%PROJECT_DIR%\config\config.bat" (
+    call "%PROJECT_DIR%\config\config.bat"
 )
 
 
@@ -639,7 +639,15 @@ REM Pokud třetí parametr není zadán, zůstane použita výchozí
 REM událost nastavená podle úrovně.
 REM ------------------------------------------------------------
 
+REM Treti parametr F (pouze do logu) neni nazev udalosti: udalost
+REM zustane vychozi a F se vyhodnoti stejne jako ctvrty parametr.
+set "_evd=%_ev%"
 if not "%~3"=="" set "_ev=%~3"
+set "_fo=%~4"
+if /I "%~3"=="F" (
+    set "_ev=%_evd%"
+    set "_fo=F"
+)
 
 REM WAIT = jeden dotaz / pollovací cyklus.
 REM
@@ -730,7 +738,7 @@ REM Používá se například pro technické nebo závěrečné informace,
 REM které není nutné zobrazovat uživateli.
 REM ------------------------------------------------------------
 
-if /I "%~4"=="F" exit /b 0
+if /I "%_fo%"=="F" exit /b 0
 
 
 REM ------------------------------------------------------------

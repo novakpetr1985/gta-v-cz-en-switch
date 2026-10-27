@@ -25,7 +25,8 @@ gta-v-cz-en-switch/
 │   ├── COLORS.md                   Dokumentace ANSI barevné palety             Připraveno
 │   ├── GIT.md                      Pravidla repozitáře a Git workflow          Připraveno
 │   ├── LICENSE-CZ.md               Český informativní překlad licence          Připraveno
-│   └── PROJECT.md                  Architektura a princip projektu             Připraveno
+│   ├── PROJECT.md                  Architektura a princip projektu             Připraveno
+│   └── UIA.md                      Dokumentace Windows UI Automation           Připraveno
 │
 ├── logs/                           Provozní záznamy
 │   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
@@ -35,7 +36,7 @@ gta-v-cz-en-switch/
 │   ├── offline.bat                 Přepnutí launcheru do offline režimu        Bude doplněno
 │   ├── switch-cz.bat               Přepnutí na českou lokalizaci               Bude doplněno
 │   ├── switch-en.bat               Přepnutí na anglickou lokalizaci            Bude doplněno
-│   ├── uia.bat                     Ověření dostupnosti služby                  Bude doplněno
+│   ├── uia.bat                     Windows UI Automation vrstva                Připraveno
 │   └── update.bat                  Aktualizace nebo příprava souborů           Bude doplněno
 │
 ├── tests/                          Testovací skripty a podpůrné soubory
@@ -61,9 +62,9 @@ gta-v-cz-en-switch/
 - [`config/`](../config/) – konfigurace nástroje. Obsahuje hodnoty používané jednotlivými skripty.
 - [`core/`](../core/) – sdílené komponenty, například [`colors.bat`](../core/colors.bat) a [`logger.bat`](../core/logger.bat). Soubory v této složce poskytují společnou logiku ostatním skriptům.
 - [`diagnostics/`](../diagnostics/) – lokálně generované diagnostické výstupy pro řešení problémů. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
-- [`docs/`](../docs/) – projektová dokumentace, architektura a pravidla projektu.
+- [`docs/`](../docs/) – projektová dokumentace, architektura, technická dokumentace a pravidla projektu.
 - [`logs/`](../logs/) – lokálně generované provozní záznamy. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
-- [`scripts/`](../scripts/) – vlastní funkční skripty nástroje, například přepínání jazyka, aktualizace nebo ověření dostupnosti služby.
+- [`scripts/`](../scripts/) – vlastní funkční skripty nástroje, například přepínání jazyka, aktualizace nebo Windows UI Automation.
 - [`tests/`](../tests/) – testovací skripty, testovací data a podpůrné soubory.
   - [`tests/logger/`](../tests/logger/) – testy centrálního loggeru.
   - [`test-logger-success.bat`](../tests/logger/test-logger-success.bat) – ověřuje standardní úspěšný průběh loggeru a automaticky kontroluje obsah logu.
@@ -134,6 +135,15 @@ Testy v [`tests/logger/`](../tests/logger/) volají logger a po dokončení auto
 - `test-logger-failure.bat` záměrně nevolá `FINISH`; kód `0` zde znamená, že se logger při předčasném ukončení chová správně.
 - Pro spuštění bez čekání na klávesu: `set NOPAUSE=1`.
 - Automaticky se neověřuje, že `DEBUG` a zprávy s parametrem `F` nejsou vidět v konzoli; to je nutné zkontrolovat při spuštění.
+
+## UI Automation
+
+Windows UI Automation vrstva je umístěna v [`scripts/uia.bat`](../scripts/uia.bat).
+
+UIA slouží jako společná nízkoúrovňová vrstva pro práci s grafickým rozhraním Windows a Rockstar Games Launcheru. Modul je připraven pro vyhledávání a aktivaci UI prvků a pro diagnostiku problémů při jejich nalezení.
+
+Pro podrobný popis použití a chování modulu je k dispozici [`UIA.md`](./UIA.md).
+
 
 ## Zásady
 

@@ -6,17 +6,19 @@ Nástroj pro Windows určený k přepínání české a anglické lokalizace hry
 
 ## Stav projektu
 
-Základní struktura a pravidla repozitáře jsou připravené; implementace společných komponent a jednotlivých funkcí se doplňuje postupně.
+Základní struktura a pravidla repozitáře jsou připravené; společné komponenty Config a Logger jsou připravené a Windows UI Automation (UIA) je připravené pro další funkce nástroje.
 
 ## Struktura projektu
 
 - [`config/`](config/) – konfigurace
     - [`config.bat`](config/config.bat) – hlavní konfigurační soubor
 - [`core/`](core/) – společné komponenty pro BAT skripty
+    - [`logger.bat`](core/logger.bat) – centrální logger
 - [`diagnostics/`](diagnostics/) – diagnostické nástroje a výstupy
 - [`docs/`](docs/) – základní a technická dokumentace projektu
 - [`logs/`](logs/) – provozní záznamy
 - [`scripts/`](scripts/) – jednotlivé funkce nástroje
+    - [`uia.bat`](scripts/uia.bat) – Windows UI Automation vrstva (připraveno)
 - [`tests/`](tests/) – testovací skripty a soubory
     - [`logger/`](tests/logger/) – testy centrálního loggeru
         - [`test-logger-success.bat`](tests/logger/test-logger-success.bat) – test standardního úspěšného běhu s automatickou kontrolou logu
@@ -33,6 +35,7 @@ Podrobnější dokumentace projektu:
 - [`COLORS.md`](docs/COLORS.md) – ANSI barevná paleta
 - [`GIT.md`](docs/GIT.md) – Pravidla repozitáře a Git workflow
 - [`PROJECT.md`](docs/PROJECT.md) – Architektura projektu
+- [`UIA.md`](docs/UIA.md) – Dokumentace Windows UI Automation
 
 ## Licence
 
