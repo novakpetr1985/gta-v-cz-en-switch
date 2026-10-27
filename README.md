@@ -6,7 +6,7 @@ Nástroj pro Windows určený k přepínání české a anglické lokalizace hry
 
 ## Stav projektu
 
-Základní struktura a pravidla repozitáře jsou připravené; společné komponenty Config a Logger jsou připravené a Windows UI Automation (UIA) je připravené pro další funkce nástroje.
+Základní struktura a pravidla repozitáře jsou připravené; společné komponenty Config a Logger jsou připravené a Windows UI Automation (UIA) je implementované, zdokumentované a ověřené automatizovanou testovací sadou.
 
 ## Struktura projektu
 
@@ -27,6 +27,14 @@ Základní struktura a pravidla repozitáře jsou připravené; společné kompo
         - [`test-config-defaults.bat`](tests/config/test-config-defaults.bat) – ověření výchozích hodnot konfigurace
         - [`test-config-overrides.bat`](tests/config/test-config-overrides.bat) – ověření zachování přepsaných hodnot
         - [`test-config-partial-override.bat`](tests/config/test-config-partial-override.bat) – ověření částečného přepsání konfigurace
+    - [`uia/`](tests/uia/) – testy Windows UI Automation
+        - [`test-uia-success.bat`](tests/uia/test-uia-success.bat) – ověření úspěšné aktivace prvku `PLAY`
+        - [`test-uia-not-found.bat`](tests/uia/test-uia-not-found.bat) – ověření výsledku `NOT_FOUND`
+        - [`test-uia-dump.bat`](tests/uia/test-uia-dump.bat) – ověření diagnostického dumpu
+        - [`test-uia-no-dump-success.bat`](tests/uia/test-uia-no-dump-success.bat) – ověření úspěchu bez vytvoření dumpu
+        - [`test-uia-invalid-input.bat`](tests/uia/test-uia-invalid-input.bat) – ověření neplatného vstupu
+        - [`test-uia-timeout.bat`](tests/uia/test-uia-timeout.bat) – ověření limitu hledání
+        - [`test-uia-timing.bat`](tests/uia/test-uia-timing.bat) – ověření timing diagnostiky
 
 ## Dokumentace
 

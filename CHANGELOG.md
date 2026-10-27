@@ -18,6 +18,8 @@
 - Standardizované návratové kódy `0`, `2`, `3`, `4` a `5`.
 - Dokumentace UIA v [`docs/UIA.md`](docs/UIA.md).
 - Integrace UIA do hlavního vstupního bodu [`gta-v-cz-en-switch.bat`](gta-v-cz-en-switch.bat).
+- Automatizovaná testovací sada UIA v [`tests/uia/`](tests/uia/).
+- Samostatné testy úspěšného běhu, nenalezení prvku, diagnostického dumpu, běhu bez dumpu, neplatného vstupu, timeoutu hledání a timing diagnostiky.
 
 ### Ověřeno
 
@@ -29,12 +31,17 @@
 - Načtení centrální konfigurace před spuštěním UIA.
 - Inicializace centrálního loggeru před spuštěním UIA.
 - Převzetí návratového kódu UIA hlavním orchestrátorem a jeho předání volajícímu.
+- Kompletní UIA testovací sada: `7 / 7` testů PASSED.
+- Testování `SUCCESS`, `NOT_FOUND` a `ERROR` výsledků.
+- Vytvoření a kontrola diagnostického dumpu.
+- Ověření, že úspěšný běh bez požadavku na dump diagnostický dump nevytvoří.
+- Ověření timing diagnostiky včetně událostí `START`, `UIAUTOMATION_READY`, `FIND_NAME_START`, `FIND_NAME_END` a `TARGET_NOT_FOUND`.
 
 ### Poznámka
 
 - UIA zůstává generickou ovládací vrstvou bez business logiky; konkrétní workflow budou implementovat vyšší funkční moduly.
 - Test spuštění hry může být následně ovlivněn stavem instalace GTA V Enhanced a kontrolami Rockstar Launcheru; taková reakce není sama o sobě chybou UIA.
-- Integrační test přes hlavní vstupní bod bude proveden v samostatné testovací větvi.
+- Kompletní testovací sada UIA je ověřena na `feature/scripts-uia`; výsledný celek bude následně znovu ověřen v samostatné testovací větvi.
 
 ## [v0.2.0] - Central Configuration - 2026-10-23
 

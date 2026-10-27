@@ -343,6 +343,45 @@ switch-*.bat → vyšší workflow
 
 ---
 
+## Testovací sada UIA
+
+Pro UIA byla vytvořena samostatná testovací sada v [`tests/uia/`](../tests/uia/).
+
+Testy jsou rozděleny podle ověřovaného chování:
+
+| Test | Ověření | Spouští hru |
+|---|---|:---:|
+| `test-uia-success.bat` | nalezení `PLAY` a aktivace přes `InvokePattern` | Ano |
+| `test-uia-not-found.bat` | nenalezení cílového prvku | Ne |
+| `test-uia-dump.bat` | vytvoření a kontrola diagnostického dumpu | Ne |
+| `test-uia-no-dump-success.bat` | úspěšná aktivace bez diagnostického dumpu | Ano |
+| `test-uia-invalid-input.bat` | odmítnutí neplatného režimu | Ne |
+| `test-uia-timeout.bat` | chování při vypršení limitu hledání prvku | Ne |
+| `test-uia-timing.bat` | vytvoření timing diagnostiky a očekávaných událostí | Ne |
+
+### Výsledek UIA testů
+
+Kompletní testovací sada byla ověřena:
+
+```text
+7 / 7 testů PASSED
+```
+
+Ověřeny byly tyto návratové stavy a výsledky:
+
+- `RC=0` / `UIA_RESULT=SUCCESS`,
+- `RC=2` / `UIA_RESULT=NOT_FOUND`,
+- `RC=4` / `UIA_RESULT=ERROR`,
+- diagnostický dump při nenalezení cíle,
+- absence dumpu při úspěšném běhu,
+- timing události `START`, `UIAUTOMATION_READY`, `FIND_NAME_START`, `FIND_NAME_END` a `TARGET_NOT_FOUND`.
+
+Testy, které nevyžadují spuštění hry, používají neexistující cílový prvek a ověřují tak pouze požadovanou diagnostickou nebo chybovou větev UIA.
+
+Testy generují lokální diagnostické soubory pouze pro potřeby ověření. Tyto výstupy nejsou součástí běžného verzovaného obsahu projektu.
+
+---
+
 ## Stav v0.5.0
 
 UIA je v této etapě:
@@ -352,6 +391,8 @@ UIA je v této etapě:
 - ověřeno na minimalizovaném Launcheru,
 - ověřeno na aktivaci `PLAY`,
 - integrováno do hlavního vstupního bodu,
+- vybaveno automatizovanou testovací sadou,
+- ověřeno kompletní sadou `7 / 7` testů,
 - zdokumentováno.
 
-Dalším krokem je integrační test celé cesty přes hlavní orchestrátor v samostatné testovací větvi.
+Dalším krokem je ověření výsledného UIA celku v samostatné testovací větvi.
