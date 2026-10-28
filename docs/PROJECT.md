@@ -11,25 +11,27 @@ Projekt poskytuje sadu BAT skriptů pro správu přepínání české a anglick�
 ```text
 gta-v-cz-en-switch/
 │
-├── config/                         Konfigurace nástroje
-│   └── config.bat                  Hlavní konfigurační soubor                  Připraveno
+├── config/                                   Konfigurace nástroje
+│   └── config.bat                            Hlavní konfigurační soubor                  Připraveno
 │
-├── core/                           Sdílené komponenty pro skripty
-│   ├── colors.bat                  Centrální ANSI barevná paleta               Připraveno
-│   └── logger.bat                  Centrální logger                            Připraveno
+├── core/                                     Sdílené komponenty pro skripty
+│   ├── colors.bat                            Centrální ANSI barevná paleta               Připraveno
+│   └── logger.bat                            Centrální logger                            Připraveno
 │
-├── diagnostics/                    Diagnostické nástroje a výstupy
-│   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
+├── diagnostics/                              Diagnostické nástroje a výstupy
+│   └── .gitkeep                              Zachování prázdného adresáře v Gitu         Prázdný soubor
 │
-├── docs/                           Projektová dokumentace
-│   ├── COLORS.md                   Dokumentace ANSI barevné palety             Připraveno
-│   ├── GIT.md                      Pravidla repozitáře a Git workflow          Připraveno
-│   ├── LICENSE-CZ.md               Český informativní překlad licence          Připraveno
-│   └── PROJECT.md                  Architektura a princip projektu             Připraveno
+├── docs/                                     Projektová dokumentace
+│   ├── COLORS.md                             Dokumentace ANSI barevné palety             Připraveno
+│   ├── GIT.md                                Pravidla repozitáře a Git workflow          Připraveno
+│   ├── LICENSE-CZ.md                         Český informativní překlad licence          Připraveno
+│   ├── PROJECT.md                            Architektura a princip projektu             Připraveno
+│   └── UIA.md                                Dokumentace Windows UI Automation           Připraveno
 │
-├── logs/                           Provozní záznamy
-│   └── .gitkeep                    Zachování prázdného adresáře v Gitu         Prázdný soubor
+├── logs/                                     Provozní záznamy
+│   └── .gitkeep                              Zachování prázdného adresáře v Gitu         Prázdný soubor
 │
+<<<<<<< HEAD
 ├── scripts/                        Funkční skripty nástroje
 │   ├── launcher.bat                Práce s Rockstar Games Launcherem           Připraveno
 │   ├── offline.bat                 Přepnutí launcheru do offline režimu        Připraveno
@@ -37,15 +39,32 @@ gta-v-cz-en-switch/
 │   ├── switch-en.bat               Přepnutí na anglickou lokalizaci            Bude doplněno
 │   ├── uia.bat                     Ověření dostupnosti služby                  Bude doplněno
 │   └── update.bat                  Aktualizace nebo příprava souborů           Bude doplněno
+=======
+├── scripts/                                  Funkční skripty nástroje
+│   ├── launcher.bat                          Práce s Rockstar Games Launcherem           Bude doplněno
+│   ├── offline.bat                           Přepnutí launcheru do offline režimu        Bude doplněno
+│   ├── switch-cz.bat                         Přepnutí na českou lokalizaci               Bude doplněno
+│   ├── switch-en.bat                         Přepnutí na anglickou lokalizaci            Bude doplněno
+│   ├── uia.bat                               Windows UI Automation vrstva                Připraveno
+│   └── update.bat                            Aktualizace nebo příprava souborů           Bude doplněno
+>>>>>>> test/scripts-uia
 │
-├── tests/                          Testovací skripty a podpůrné soubory
-│   ├── logger/                     Testy centrálního loggeru
-│   │   ├── test-logger-failure.bat Záměrně předčasně ukončený běh              Připraveno
-│   │   └── test-logger-success.bat Standardní úspěšný běh                      Připraveno
-│   └── config/                     Testy centrální konfigurace
-│       ├── test-config-defaults.bat Výchozí hodnoty konfigurace                Připraveno
-│       ├── test-config-overrides.bat Zachování přepsaných hodnot               Připraveno
-│       └── test-config-partial-override.bat Částečné přepsání konfigurace      Připraveno
+├── tests/                                    Testovací skripty a podpůrné soubory
+│   ├── logger/                               Testy centrálního loggeru
+│   │   ├── test-logger-failure.bat           Záměrně předčasně ukončený běh              Připraveno
+│   │   └── test-logger-success.bat           Standardní úspěšný běh                      Připraveno
+│   ├── config/                               Testy centrální konfigurace
+│   │   ├── test-config-defaults.bat          Výchozí hodnoty konfigurace                Připraveno
+│   │   ├── test-config-overrides.bat         Zachování přepsaných hodnot               Připraveno
+│   │   └── test-config-partial-override.bat  Částečné přepsání konfigurace      Připraveno
+│   └── uia/                                  Testy Windows UI Automation
+│       ├── test-uia-success.bat              Úspěšná aktivace `PLAY`              Připraveno
+│       ├── test-uia-not-found.bat            Nenalezení cílového prvku            Připraveno
+│       ├── test-uia-dump.bat                 Diagnostický dump                    Připraveno
+│       ├── test-uia-no-dump-success.bat      Úspěch bez dumpu                     Připraveno
+│       ├── test-uia-invalid-input.bat        Neplatný vstup                      Připraveno
+│       ├── test-uia-timeout.bat              Timeout hledání                      Připraveno
+│       └── test-uia-timing.bat               Timing diagnostika                   Připraveno
 │
 ├── .gitattributes                  Pravidla pro konce řádků a textové soubory  Připraveno
 ├── .gitignore                      Pravidla pro ignorované soubory             Připraveno
@@ -61,13 +80,22 @@ gta-v-cz-en-switch/
 - [`config/`](../config/) – konfigurace nástroje. Obsahuje hodnoty používané jednotlivými skripty.
 - [`core/`](../core/) – sdílené komponenty, například [`colors.bat`](../core/colors.bat) a [`logger.bat`](../core/logger.bat). Soubory v této složce poskytují společnou logiku ostatním skriptům.
 - [`diagnostics/`](../diagnostics/) – lokálně generované diagnostické výstupy pro řešení problémů. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
-- [`docs/`](../docs/) – projektová dokumentace, architektura a pravidla projektu.
+- [`docs/`](../docs/) – projektová dokumentace, architektura, technická dokumentace a pravidla projektu.
 - [`logs/`](../logs/) – lokálně generované provozní záznamy. Jejich obsah se neukládá do Gitu; verzován zůstává pouze soubor `.gitkeep`.
-- [`scripts/`](../scripts/) – vlastní funkční skripty nástroje, například přepínání jazyka, aktualizace nebo ověření dostupnosti služby.
+- [`scripts/`](../scripts/) – vlastní funkční skripty nástroje, například přepínání jazyka, aktualizace nebo Windows UI Automation.
 - [`tests/`](../tests/) – testovací skripty, testovací data a podpůrné soubory.
   - [`tests/logger/`](../tests/logger/) – testy centrálního loggeru.
   - [`test-logger-success.bat`](../tests/logger/test-logger-success.bat) – ověřuje standardní úspěšný průběh loggeru a automaticky kontroluje obsah logu.
   - [`test-logger-failure.bat`](../tests/logger/test-logger-failure.bat) – ověřuje průběžné logování při záměrném předčasném ukončení běhu a automaticky kontroluje obsah logu.
+  - [`tests/config/`](../tests/config/) – testy centrální konfigurace.
+  - [`tests/uia/`](../tests/uia/) – automatizované testy Windows UI Automation.
+    - `test-uia-success.bat` – ověřuje úspěšnou aktivaci prvku `PLAY`.
+    - `test-uia-not-found.bat` – ověřuje výsledek `NOT_FOUND`.
+    - `test-uia-dump.bat` – ověřuje vytvoření a obsah diagnostického dumpu.
+    - `test-uia-no-dump-success.bat` – ověřuje úspěšný běh bez vytvoření dumpu.
+    - `test-uia-invalid-input.bat` – ověřuje odmítnutí neplatného vstupu.
+    - `test-uia-timeout.bat` – ověřuje chování při limitu hledání.
+    - `test-uia-timing.bat` – ověřuje timing diagnostiku a očekávané události.
 
 ## Klíčové soubory v kořenu
 
@@ -136,6 +164,17 @@ Testy v [`tests/logger/`](../tests/logger/) volají logger a po dokončení auto
 - `test-logger-failure.bat` záměrně nevolá `FINISH`; kód `0` zde znamená, že se logger při předčasném ukončení chová správně.
 - Pro spuštění bez čekání na klávesu: `set NOPAUSE=1`.
 - Automaticky se neověřuje, že `DEBUG` a zprávy s parametrem `F` nejsou vidět v konzoli; to je nutné zkontrolovat při spuštění.
+
+## UI Automation
+
+Windows UI Automation vrstva je umístěna v [`scripts/uia.bat`](../scripts/uia.bat).
+
+UIA slouží jako společná nízkoúrovňová vrstva pro práci s grafickým rozhraním Windows a Rockstar Games Launcheru. Modul je připraven pro vyhledávání a aktivaci UI prvků a pro diagnostiku problémů při jejich nalezení.
+
+Pro podrobný popis použití a chování modulu je k dispozici [`UIA.md`](./UIA.md).
+
+UIA je aktuálně ověřeno kompletní automatizovanou sadou `7 / 7` testů PASSED. Testy pokrývají úspěšnou aktivaci, nenalezení prvku, diagnostický dump, běh bez dumpu, neplatný vstup, timeout hledání a timing diagnostiku.
+
 
 ## Zásady
 

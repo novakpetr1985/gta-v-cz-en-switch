@@ -6,7 +6,7 @@ Nástroj pro Windows určený k přepínání české a anglické lokalizace hry
 
 ## Stav projektu
 
-Základní struktura a pravidla repozitáře jsou připravené; implementace společných komponent a jednotlivých funkcí se doplňuje postupně.
+Základní struktura a pravidla repozitáře jsou připravené; společné komponenty Config a Logger jsou připravené a Windows UI Automation (UIA) je implementované, zdokumentované a ověřené automatizovanou testovací sadou.
 
 | Modul | Stav | Verze |
 | :---: | :---: | :---: |
@@ -20,10 +20,12 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
 - [`config/`](config/) – konfigurace
     - [`config.bat`](config/config.bat) – hlavní konfigurační soubor
 - [`core/`](core/) – společné komponenty pro BAT skripty
+    - [`logger.bat`](core/logger.bat) – centrální logger
 - [`diagnostics/`](diagnostics/) – diagnostické nástroje a výstupy
 - [`docs/`](docs/) – základní a technická dokumentace projektu
 - [`logs/`](logs/) – provozní záznamy
 - [`scripts/`](scripts/) – jednotlivé funkce nástroje
+    - [`uia.bat`](scripts/uia.bat) – Windows UI Automation vrstva (připraveno)
 - [`tests/`](tests/) – testovací skripty a soubory
     - [`logger/`](tests/logger/) – testy centrálního loggeru
         - [`test-logger-success.bat`](tests/logger/test-logger-success.bat) – test standardního úspěšného běhu s automatickou kontrolou logu
@@ -32,6 +34,14 @@ Základní struktura a pravidla repozitáře jsou připravené; implementace spo
         - [`test-config-defaults.bat`](tests/config/test-config-defaults.bat) – ověření výchozích hodnot konfigurace
         - [`test-config-overrides.bat`](tests/config/test-config-overrides.bat) – ověření zachování přepsaných hodnot
         - [`test-config-partial-override.bat`](tests/config/test-config-partial-override.bat) – ověření částečného přepsání konfigurace
+    - [`uia/`](tests/uia/) – testy Windows UI Automation
+        - [`test-uia-success.bat`](tests/uia/test-uia-success.bat) – ověření úspěšné aktivace prvku `PLAY`
+        - [`test-uia-not-found.bat`](tests/uia/test-uia-not-found.bat) – ověření výsledku `NOT_FOUND`
+        - [`test-uia-dump.bat`](tests/uia/test-uia-dump.bat) – ověření diagnostického dumpu
+        - [`test-uia-no-dump-success.bat`](tests/uia/test-uia-no-dump-success.bat) – ověření úspěchu bez vytvoření dumpu
+        - [`test-uia-invalid-input.bat`](tests/uia/test-uia-invalid-input.bat) – ověření neplatného vstupu
+        - [`test-uia-timeout.bat`](tests/uia/test-uia-timeout.bat) – ověření limitu hledání
+        - [`test-uia-timing.bat`](tests/uia/test-uia-timing.bat) – ověření timing diagnostiky
 
 ## Moduly a workflow
 
@@ -79,7 +89,11 @@ Podrobnější dokumentace projektu:
 - [`GIT.md`](docs/GIT.md) – Pravidla repozitáře a Git workflow
 - [`LAUNCHER.md`](docs/LAUNCHER.md) – Dokumentace modulu Rockstar Launcher
 - [`PROJECT.md`](docs/PROJECT.md) – Architektura projektu
+<<<<<<< HEAD
 - [`OFFLINE.md`](docs/OFFLINE.md) – Offline modul
+=======
+- [`UIA.md`](docs/UIA.md) – Dokumentace Windows UI Automation
+>>>>>>> test/scripts-uia
 
 ## Licence
 

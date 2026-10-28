@@ -13,6 +13,7 @@ REM
 REM Aktualni workflow:
 REM   1. scripts\launcher.bat
 REM   2. scripts\offline.bat
+REM   3. scripts\uia.bat
 REM
 REM Navratovy kod:
 REM   0 = vsechny provedene kroky byly uspesne
@@ -47,26 +48,28 @@ echo %BOLD%%WHITE%GTA V CZ/EN Switch%RESET%
 REM ============================================================
 REM KROKY
 REM ============================================================
-REM
+
+REM ------------------------------------------------------------
 REM 1. LAUNCHER
-REM
+REM ------------------------------------------------------------
+
 call "%~dp0scripts\launcher.bat"
 if errorlevel 1 goto END_ERROR
 
+
+REM ------------------------------------------------------------
 REM 2. OFFLINE
-REM Samostatny modul offline.bat provede prepnuti do offline rezimu.
-REM
-REM Orchestrator zde pouze:
-REM   - spusti modul
-REM   - vyhodnoti jeho navratovy kod
-REM
-REM Vlastni logika Offline modulu zustava uvnitr
-REM scripts\offline.bat.
-REM
-REM ============================================================
+REM ------------------------------------------------------------
 
 call "%~dp0scripts\offline.bat"
+if errorlevel 1 goto END_ERROR
 
+
+REM ------------------------------------------------------------
+REM 3. UI AUTOMATION
+REM ------------------------------------------------------------
+
+call "%~dp0scripts\uia.bat"
 if errorlevel 1 goto END_ERROR
 
 
@@ -74,7 +77,7 @@ REM ============================================================
 REM UKONCENI - USPESNE
 REM ============================================================
 REM
-REM Pokud se sem beh dostane, Offline modul vratil kod 0.
+REM Pokud se sem beh dostane, vsechny provedene kroky vratily kod 0.
 REM
 REM ============================================================
 
@@ -82,7 +85,7 @@ REM ============================================================
 
 call "%CORE_DIR%logger.bat" NL
 
-call "%CORE_DIR%logger.bat" OK "Rockstar Launcher bezi v offline rezimu."
+call "%CORE_DIR%logger.bat" OK "Launcher bezi v offline rezimu a UI Automation probehla uspesne."
 
 call "%CORE_DIR%logger.bat" FINISH SUCCESS 0
 

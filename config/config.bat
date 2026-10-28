@@ -30,7 +30,13 @@ REM ============================================================
 REM Cesta k LauncherPatcher.exe.
 if not defined ROCKSTAR_PATCHER set "ROCKSTAR_PATCHER=C:\Program Files\Rockstar Games\Launcher\LauncherPatcher.exe"
 
-REM Slozka s launcher.log Rockstar Games Launcheru.
+REM Adresar s launcher.log Rockstar Games Launcheru.
+REM Standardne <Dokumenty>\Rockstar Games\Launcher. Cesta k Dokumentum
+REM se zjisti ze systemu, aby fungovala i s presmerovanymi slozkami
+REM (OneDrive). Predem nastavena hodnota se neprepisuje.
+if not defined ROCKSTAR_LOG_DIR (
+    for /f "delims=" %%D in ('powershell -NoProfile -Command "[Environment]::GetFolderPath('MyDocuments')"') do set "ROCKSTAR_LOG_DIR=%%D\Rockstar Games\Launcher"
+)
 if not defined ROCKSTAR_LOG_DIR set "ROCKSTAR_LOG_DIR=%USERPROFILE%\Documents\Rockstar Games\Launcher"
 
 
@@ -54,5 +60,5 @@ if not defined TIMEOUT_OFFLINE_MANUAL set "TIMEOUT_OFFLINE_MANUAL=180"
 REM ============================================================
 REM KONEC MODULU
 REM ============================================================
-
+s
 exit /b 0
