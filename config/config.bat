@@ -60,5 +60,5 @@ if not defined TIMEOUT_OFFLINE_MANUAL set "TIMEOUT_OFFLINE_MANUAL=180"
 REM ============================================================
 REM KONEC MODULU
 REM ============================================================
-s
+
 exit /b 0
