@@ -69,6 +69,14 @@ REM ------------------------------------------------------------
 REM 3. UI AUTOMATION
 REM ------------------------------------------------------------
 
+set "UIA_MODE=invoke"
+set "UIA_NAMES=PLAY"
+set "UIA_REGEX="
+set "UIA_NAV="
+set "UIA_WINDOW_HANDLE="
+set "UIA_DUMP="
+set "UIA_TIMING="
+
 call "%~dp0scripts\uia.bat"
 if errorlevel 1 goto END_ERROR
 

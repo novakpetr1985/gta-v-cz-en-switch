@@ -287,7 +287,18 @@ REM ============================================================
 
 call "%CORE_DIR%logger.bat" DEBUG "Okno nalezeno: PID %LS_WINDOW_PID%, HWND %LS_WINDOW_HANDLE%."
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$sig='[DllImport(\"user32.dll\")] public static extern bool ShowWindowAsync(IntPtr hWnd,int nCmdShow); [DllImport(\"user32.dll\")] public static extern bool SetForegroundWindow(IntPtr hWnd);'; Add-Type -MemberDefinition $sig -Name Win32 -Namespace LauncherWindow; $h=[IntPtr]::new([Int64]%LS_WINDOW_HANDLE%); [LauncherWindow.Win32]::ShowWindowAsync($h,9) | Out-Null; [LauncherWindow.Win32]::SetForegroundWindow($h) | Out-Null" >nul 2>&1
+set /a LS_ACTIVATE_ATTEMPT=0
+
+
+:LS_WINDOW_ACTIVATE_RETRY
+
+set /a LS_ACTIVATE_ATTEMPT+=1
+
+call "%CORE_DIR%logger.bat" DEBUG "Aktivace okna Rockstar Launcheru: pokus %LS_ACTIVATE_ATTEMPT% z 3."
+
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$sig='[DllImport(\"user32.dll\")] public static extern bool ShowWindowAsync(IntPtr hWnd,int nCmdShow); [DllImport(\"user32.dll\")] public static extern bool BringWindowToTop(IntPtr hWnd); [DllImport(\"user32.dll\")] public static extern bool SetForegroundWindow(IntPtr hWnd);'; Add-Type -MemberDefinition $sig -Name Win32 -Namespace LauncherWindow; $h=[IntPtr]::new([Int64]%LS_WINDOW_HANDLE%); [LauncherWindow.Win32]::ShowWindowAsync($h,9) | Out-Null; Start-Sleep -Milliseconds 150; [LauncherWindow.Win32]::BringWindowToTop($h) | Out-Null; [LauncherWindow.Win32]::SetForegroundWindow($h) | Out-Null" >nul 2>&1
+
+timeout /t 1 /nobreak >nul
 
 
 REM ============================================================
@@ -301,8 +312,13 @@ for /f "delims=" %%f in ('powershell -NoProfile -ExecutionPolicy Bypass -Command
 if "%LS_FOREGROUND%"=="%LS_WINDOW_HANDLE%" goto LS_WINDOW_SUCCESS
 
 
+if %LS_ACTIVATE_ATTEMPT% LSS 3 goto LS_WINDOW_ACTIVATE_RETRY
+
+
 call "%CORE_DIR%logger.bat" WARN "Okno Rockstar Launcheru bylo nalezeno, ale nepodarilo se jej dostat do popredi."
+
 set "LS_ERROR=Okno Rockstar Launcheru nebylo mozne aktivovat."
+
 goto LS_FAIL
 
 
@@ -317,6 +333,7 @@ call "%CORE_DIR%logger.bat" OK "Rockstar Launcher okno je aktivni. PID %LS_WINDO
 if "%LAUNCHER_TEST%"=="1" goto LS_TEST_SUCCESS
 
 exit /b 0
+
 
 REM ============================================================
 REM TESTOVACI REZIM - USPESNY VYSLEDEK
